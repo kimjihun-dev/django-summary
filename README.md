@@ -7,32 +7,33 @@
 
 <br><br>
 ## form 파일 작성시 Tip
-<br><br>
-
 ```python
 	class QuestionForm(forms.ModelForm):
-		class Meta:
+	    class Meta:
 		model = Question
-		fields = ['subject', 'content']
-		# 클래스 지정으로 꾸밀수 있음
-		widgets = {
-		    'subject': forms.TextInput(attrs={'class': 'form-control'}),
-		    'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
-		}
-		# 영어에서 한글로 변경
-		labels = {
-		    'subject': '제목',
-		    'content': '내용',
-		}
+
+	    fields = ['subject', 'content']
+	    # 클래스 지정으로 꾸밀수 있음
+	    widgets = {
+		'subject': forms.TextInput(attrs={'class': 'form-control'}),
+		'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
+	    }
+	    # 영어에서 한글로 변경
+	    labels = {
+		'subject': '제목',
+		'content': '내용',
+	    }
 
 
 	class AnswerForm(forms.ModelForm):
-		class Meta:
+	    class Meta:
 		model = Answer
-		fields = ['content']
-		labels = {
-		    'content': '답변내용'
-		}
+
+	    fields = ['content']
+	    labels = {
+		'content': '답변내용'
+	     }
+
 ```		
 
 
@@ -40,32 +41,41 @@
 ## 이미지 업로드 방법
 <br><br>
 
-**model.py**
+## model.py
 
+```python
 	image = models.ImageField(blank=True, null=True)
+```
+
+```python
+	pip install pillow
+```
 
 
-**pip install pillow**
+## settings.py
 
-
-**settings.py**
-
+```python
 	MEDIA_URL = '/media/'
 	MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+```	
 
 
-**urls.py**
+## urls.py
 
+```python
 	from django.conf.urls.static import static
 	from django.conf import settings
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```	
 		
 
-**template** 
+## template
 
+```python
 	{% if project.image %}
 		<img src="{{ project.image.url }}">
 	{% endif %}
+```	
 
 
 <br><br>
