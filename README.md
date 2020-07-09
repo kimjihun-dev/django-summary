@@ -9,6 +9,7 @@
 ## form 파일 작성시 Tip
 <br><br>
 
+```python
 	class QuestionForm(forms.ModelForm):
 		class Meta:
 		model = Question
@@ -32,6 +33,7 @@
 		labels = {
 		    'content': '답변내용'
 		}
+```		
 
 
 <br><br>
