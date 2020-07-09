@@ -52,7 +52,7 @@
 ```
 
 
-## settings.py
+#### settings.py
 
 ```python
 	MEDIA_URL = '/media/'
@@ -60,7 +60,7 @@
 ```	
 
 
-## urls.py
+#### urls.py
 
 ```python
 	from django.conf.urls.static import static
@@ -69,7 +69,7 @@
 ```	
 		
 
-## template
+#### template
 
 ```python
 	{% if project.image %}
