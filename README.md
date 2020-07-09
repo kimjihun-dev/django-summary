@@ -2,11 +2,11 @@
 # django 주요기능정리
 <br><br>
 
-## requirement.txt 작성방법
+#### requirement.txt 작성방법
 	pip freeze > requirements.txt
 
 <br><br>
-## form 파일 작성시 Tip
+#### form 파일 작성시 Tip
 ```python
 	class QuestionForm(forms.ModelForm):
 	    class Meta:
@@ -41,7 +41,7 @@
 ## 이미지 업로드 방법
 <br><br>
 
-## model.py
+#### model.py
 
 ```python
 	image = models.ImageField(blank=True, null=True)
@@ -84,25 +84,20 @@
 
 ## static 정적파일 이용방법
 <br><br>
-**config/setting.py**
-
+#### config/setting.py**
+```python
 	STATIC_URL = '/static/'
 	STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
-	
-
-사용할 경우
-
+```	
+#### 사용할 경우
+```python
 	base.html 파일에서
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'style.css' %}">
-	
-
-
+```	
 <br><br>
 <hr/>
 <br><br>
-
-
 ## ForeignKey(on_delete=) 옵션들
 <br><br>
 
@@ -124,8 +119,8 @@
 ## 페이징 처리
 <br><br>
 
-제네릭 뷰를 쓸 경우(paginate_by 만 넣어주면 된다)
-	
+#### 제네릭 뷰를 쓸 경우(paginate_by 만 넣어주면 된다)
+```python	
 	class PostList(generic.ListView):
 		queryset = Post.objects.filter(status=1).order_by('-created_at')
 		template_name = 'blog/index.html'
@@ -144,10 +139,10 @@
 	  </ul>
 	 </nav>
 	{% endif %}
-	
+```	
 
-함수형으로 쓸 경우
-	
+#### 함수형으로 쓸 경우
+```python	
 	from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 	
 	def PostList(request):
@@ -165,7 +160,8 @@
 			post_list = paginator.page(paginator.num_pages)
     		return render(request, 'index.html', {'page': page, 'post_list': post_list})
 	
-	# view
+	
+	// view
 	
 	{% if post_list.has_other_pages %}
 	  <nav aria-label="Page navigation conatiner"></nav>
@@ -180,7 +176,8 @@
 	  </nav>
 	</div>
 	{% endif %}
-	
+
+```
 
 <br><br>
 <hr/>
@@ -190,20 +187,20 @@
 링크 : https://github.com/summernote/django-summernote/
 <br><br>
 
-**설치**
-
+#### 설치
+```python
 	pip install django-summernote
-
-**settings.py 에서 등록**
-
+```
+#### settings.py 에서 등록
+```python
 	INSTALLED_APPS += ('django_summernote', )
-	
-**config urls.py 에 url 등록**
-
+```	
+#### config urls.py 에 url 등록
+```python
 	path('summernote/', include('django_summernote.urls')),
-	
-**settings.py media 파일 설정 해줘야 함**
-
+```	
+#### settings.py media 파일 설정 해줘야 함
+```python
 	MEDIA_URL = '/media/'
 	MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 	
@@ -211,13 +208,13 @@
  	from django.conf.urls.static import static
 
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-	
-**마이그레이트**
-
+```	
+#### 마이그레이트
+```python
 	 python manage.py migrate
-	 
-**admin 사이트에서 사용할시**
-
+```	 
+#### admin 사이트에서 사용할시
+```python
 	from django_summernote.admin import SummernoteModelAdmin
 	from .models import Post
 
@@ -225,9 +222,7 @@
     		summernote_fields = ('content',)
 
 	admin.site.register(Post, PostAdmin)
-	
-
-
+```
 <br><br>
 <hr/>
 <br><br>
@@ -252,13 +247,13 @@
 
 ## SECRET_KEY 설정
 <br><br>
-
+```python
 	KEY 값은 별도의 파일로 분리하여 import 로 가져온다.
 
 	from . import secret_key
 	
 	SECRET_KEY = secret_key.secret_config
-
+```
 
 <br><br>
 <hr/>
@@ -268,7 +263,7 @@
 ## Slug 설정
 <br>
 
-**슬러그란?**
+#### 슬러그란?
 
 슬러그는 페이지나 포스트를 설명하는 핵심단어의 집합. 원래 신문이나 잡지 등에서 제목을 쓸 떄,
 중요한 의미를 포함하는 단어만을 이용해 제목을 작성하는 방법을 말함.
@@ -278,20 +273,19 @@
 URL에 사용된다. 슬러그를 URL 에 사용함으로써 검색엔진에서 더 빨리 페이지를 찾아주고 검색 엔진의 정확도를 높여준다.
 
 slug 필드의 디폴트 길이는 50 , 해당필드에는 인덱스가 디폴트로 생성됨.
-
+```python
 	slug = model.SlugField('SLUG', unique=True, allow_unicode=True, help_text='')
-	
+```	
 slug 필드에 unique 옵션을 추가해 특정 포스트를 검색시 기본 키 대신에 사용.
 allow_unicode 옵션을 추가하면 한글처리가 가능하다.
 help_text 는 해당 칼럼을 설명해주는 문구로 폼 화면에 나타남.
 
 admin.py
-
+```python
 	prepopulated_fields = {'slug': ('title',)}
-
+```
 
 어드민 페이지 등록시 위의 옵션을 넣으면 title 필드를 이용해 값이 미리 채워지도록 한다.
-
 
 
 <br><br>
@@ -302,11 +296,11 @@ admin.py
 
 get_absolute_url() 메소드 호출하는 방법과, {% url %} 템플릿 태그를 사용 하는 방법이 있음.
 
-**get_absolute_url() 사용예시**
-
+#### get_absolute_url() 사용예시
+```python
 	def get_absolute_url(self):
         	return reverse('blog:post_detail', args=(self.slug,))
-		
+```		
 위의 메소드를 호출하면 /blog/post/slug단어  와 같은 형식이 된다. 
 
 <br><br>
@@ -316,8 +310,8 @@ get_absolute_url() 메소드 호출하는 방법과, {% url %} 템플릿 태그�
 ## pythonanywhere 셋팅 
 
 
-**wsgi.py**
-
+#### wsgi.py
+```python
 	import os
 	import sys
 	path = "/home/kimzod/zodlab"
@@ -329,9 +323,9 @@ get_absolute_url() 메소드 호출하는 방법과, {% url %} 템플릿 태그�
 
 	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 	application = StaticFilesHandler(get_wsgi_application())
-	
+```	
 
-**Static files**
+#### Static files
 
 사용했던 js, css 등 정적파일들과 이미지 등 파일 업로드시 설정.
 앞에는 URL, 뒤에는 디렉토리이다.
@@ -340,12 +334,12 @@ get_absolute_url() 메소드 호출하는 방법과, {% url %} 템플릿 태그�
 	/static/	/home/kimzod/zodlab/static
 
 
-**데이터베이스**
+#### 데이터베이스
 
 파이썬애니웨어 프리계정에서는 mysql 을 사용한다.
 
 config/settings.py
-
+```python
 	'default': {
 		'ENGINE': 'django.db.backend.mysql',
 		'NAME': 'DB이름',
@@ -353,7 +347,7 @@ config/settings.py
 		'PASSWORD': 'DB관리자 비밀번호',
 		"HOST': 'Database host address 이 부분을 복사해서 입력한다.
 	}
-
+```
 
 
 
