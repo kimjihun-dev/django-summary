@@ -38,7 +38,7 @@
 
 
 <br><br>
-## 이미지 업로드 방법
+## 이미지 업로드 방법(image upload)
 <br><br>
 
 #### model.py
