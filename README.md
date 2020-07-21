@@ -349,6 +349,14 @@ config/settings.py
 	}
 ```
 
+## django static css 파일내 이미지경로 설정
+
+css 파일내부에선 아래의 같이 경로를 잡아준다.
+
+```css
+	background: url('/static/images/top-icon.png')
+```
+
 
 
 
