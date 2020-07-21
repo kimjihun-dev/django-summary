@@ -87,7 +87,9 @@
 #### config/setting.py**
 ```python
 	STATIC_URL = '/static/'
-	STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
+	STATICFILES_DIRS = [
+    		os.path.join(BASE_DIR, 'static'),
+	]
 ```	
 #### 사용할 경우
 ```python
