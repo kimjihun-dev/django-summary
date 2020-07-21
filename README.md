@@ -93,10 +93,15 @@
 ```	
 #### 사용할 경우
 ```python
-	base.html 파일에서
+	base.html
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'style.css' %}">
-```	
+```
+css 파일내부에선 아래의 같이 경로를 잡아준다.
+
+```css
+	background: url('/static/images/top-icon.png')
+```
 <br><br>
 <hr/>
 <br><br>
@@ -354,13 +359,7 @@ config/settings.py
 <hr />
 <br><br>
 
-## django static css 파일내 이미지경로 설정
 
-css 파일내부에선 아래의 같이 경로를 잡아준다.
-
-```css
-	background: url('/static/images/top-icon.png')
-```
 
 <br><br>
 <hr />
