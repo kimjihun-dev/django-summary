@@ -208,9 +208,13 @@ css 파일내부에선 아래의 같이 경로를 잡아준다.
 ```	
 #### settings.py media 파일 설정 해줘야 함
 ```python
+	X_FRAME_OPTIONS = 'SAMEORIGIN'  // 보안이슈로 인하여 새로 입력
+	
 	MEDIA_URL = '/media/'
 	MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-	
+```
+#### config\urls.py 에서 media 관련 설정을 해준다.
+```python
 	from django.conf import settings
  	from django.conf.urls.static import static
 
