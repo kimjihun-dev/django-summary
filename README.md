@@ -394,6 +394,16 @@ settings.py에서 INSTALLED_APPS, MIDDLEWEAR 에 아래의 코드들 추가
 	]
 ```
 
+```python
+	setting.py 에 아래의 코드들도 추가
+	
+	import dj_database_url
+	db_from_env = dj_database_url.config(conn_max_age=500)
+	DATABASES['default'].update(db_from_env)    # DB 설정
+	
+	CORS_ORIGIN_ALLOW_ALL = True  # 외부에서 내가 만든 django 프로그램과 통신하기 위함
+```
+
 설치한 라이브러리 리스트로 만들기 (필요한 라이브러리를 헤로쿠에 알려주기 위해)
 
 ```python
@@ -407,7 +417,11 @@ runtime.txt 파일 만들기
 	python-3.8.5   # 대소문자와 "-" 에 주의
 ```
 
+
+
 github 에 저장소 만든 후 push
+
+
 
 
 
