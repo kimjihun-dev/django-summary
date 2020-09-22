@@ -444,6 +444,16 @@ runtime.txt 파일 만들기
 	python-3.8.5   # 대소문자와 "-" 에 주의
 ```
 
+#### Procfile파일 만들기
+
+heroku 에 올리기 위해 필요한 파일.
+
+```python
+	Procfile  # root 디렉토리에 생성
+	
+	web: gunicorn 프로젝트명.wsgi --log-file -     # django-admin startproject "프로젝트명" 으로 만들었던 프로젝트 이름을 넣는다.
+						       # 대부분 블로그에서 프로젝트라고 대충 설명해놔서 삽질 많이 했음.
+```
 
 
 github 에 저장소 만든 후 push
