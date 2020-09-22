@@ -371,7 +371,34 @@ config/settings.py
 
 ## 헤로쿠에 배포하기
 
-#### 라이브러리 설치
+#### setting.py 수정
+
+보안설정 
+
+```python
+	SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '기존의 시크릿키')
+	DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+	ALLOWED_HOSTS = ['*']
+```
+
+#### .gitignore파일 만들기
+
+```python
+	__pycache__/
+	*.log
+	*.pot
+	*.pyc
+	*.py[cod]
+
+	.Python
+	venv/
+
+	db.sqlite3
+	.DS_Store
+```
+
+
+#### 라이브러리 설치 및 진행
 
 ```python
 	pip install dj-database-url gunicorn psycopg2-binary whitenoise django-cors-headers
