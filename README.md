@@ -387,9 +387,27 @@ settings.py에서 INSTALLED_APPS, MIDDLEWEAR 에 아래의 코드들 추가
 ```
 
 ```python
+	MIDDLEWARE = [
+	    ...	
 	'whitenoise.middleware.WhiteNoiseMiddleware',
 	'corsheaders.middleware.CorsMiddleware',
+	]
 ```
+
+설치한 라이브러리 리스트로 만들기 (필요한 라이브러리를 헤로쿠에 알려주기 위해)
+
+```python
+	pip freeze > requirements.txt
+```
+
+runtime.txt 파일 만들기
+
+```python
+	python --version 버전 확인후 runtime.txt 파일 생성 후 아래와 같이 버전 입력
+	python-3.8.5   # 대소문자와 "-" 에 주의
+```
+
+github 에 저장소 만든 후 push
 
 
 
