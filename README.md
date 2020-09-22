@@ -369,6 +369,27 @@ config/settings.py
 <hr />
 <br><br>
 
+## 헤로쿠에 배포하기
+
+#### 라이브러리 설치
+
+```python
+	pip install dj-database-url gunicorn psycopg2-binary whitenoise django-cors-headers
+```
+
+settings.py에서 INSTALLED_APPS, MIDDLEWEAR 에 아래의 코드들 추가
+
+```python
+	INSTALLED_APPS = [
+	    ...
+	    'corsheaders',
+	]
+```
+
+```python
+	'whitenoise.middleware.WhiteNoiseMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
+```
 
 
 
