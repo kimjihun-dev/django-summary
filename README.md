@@ -456,7 +456,21 @@ heroku 에 올리기 위해 필요한 파일.
 ```
 
 
-github 에 저장소 만든 후 push
+#### github 에 저장소 만든 후 push
+
+#### heroku cli 설치 
+
+#### 개발IDE 콘솔창에서 heroku cli 명령어
+
+```javascript
+	heroku login                          		# 헤로쿠에 로그인 
+	heroku create drf-portfolio-api       		# 서버생성
+	git push heroku master                		# git 에 올린 파일들을 서버에 push 
+	heroku run python manage.py migrate   		# 서버에 데이터베이스 등록
+	heroku run python manage.py createsuperuser     # DB 관리자 등록
+	heroku open                                     # heroku error 이 안뜬다면 배포 성공
+```
+
 
 
 
