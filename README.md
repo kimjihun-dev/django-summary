@@ -462,7 +462,7 @@ heroku 에 올리기 위해 필요한 파일.
 
 #### 개발IDE 콘솔창에서 heroku cli 명령어
 
-```javascript
+```python
 	heroku login                          		# 헤로쿠에 로그인 
 	heroku create drf-portfolio-api       		# 서버생성
 	git push heroku master                		# git 에 올린 파일들을 서버에 push 
